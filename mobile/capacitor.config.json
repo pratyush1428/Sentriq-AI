@@ -1,0 +1,18 @@
+{
+  "appId": "ai.sentriq.app",
+  "appName": "Sentriq AI",
+  "webDir": "../frontend/out",
+  "bundledWebRuntime": false,
+  "server": {
+    "cleartext": true,
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1500,
+      "backgroundColor": "#F6F4EE",
+      "showSpinner": false,
+      "androidScaleType": "CENTER_CROP"
+    }
+  }
+}
