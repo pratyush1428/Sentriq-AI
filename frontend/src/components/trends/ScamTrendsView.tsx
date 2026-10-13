@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { TrendingUp, MapPin, AlertTriangle, ArrowUpRight, ShieldCheck, Filter } from "lucide-react";
+import { useState } from "react";
+import { MapPin } from "lucide-react";
 import { RegionalTrendItem } from "@/types";
 
 interface ScamTrendsViewProps {

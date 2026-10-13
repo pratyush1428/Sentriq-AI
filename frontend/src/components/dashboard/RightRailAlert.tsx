@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { AlertTriangle, ArrowRight, BookOpen, ShieldAlert } from "lucide-react";
+import { AlertTriangle, ArrowRight, BookOpen } from "lucide-react";
 import { RegionalTrendItem } from "@/types";
 
 interface RightRailAlertProps {

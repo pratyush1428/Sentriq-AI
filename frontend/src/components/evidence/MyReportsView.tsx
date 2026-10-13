@@ -28,6 +28,18 @@ export function MyReportsView() {
   const [ackValue, setAckValue] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
+  const refreshReports = () => {
+    fetchCybercrimeReports()
+      .then((data) => {
+        setReports(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error loading reports:", err);
+        setIsLoading(false);
+      });
+  };
+
   useEffect(() => {
     let isMounted = true;
     fetchCybercrimeReports()
@@ -52,7 +64,7 @@ export function MyReportsView() {
     await updateCybercrimeReportStatus(reportId, "Acknowledgement Recorded", ackValue.trim());
     setEditingAckId(null);
     setAckValue("");
-    await loadReports();
+    refreshReports();
   };
 
   const getStatusBadge = (status: string) => {

@@ -3,9 +3,7 @@
 import React, { useState } from "react";
 import { 
   X, 
-  ShieldAlert, 
   ShieldCheck, 
-  AlertTriangle, 
   ExternalLink, 
   Download, 
   FileText, 
@@ -13,12 +11,9 @@ import {
   PhoneCall, 
   Copy, 
   FileArchive, 
-  ArrowRight,
-  HelpCircle,
-  Hash,
-  Globe2
+  Hash
 } from "lucide-react";
-import { ScanResult, CybercrimeReport, EvidenceItem } from "@/types";
+import { ScanResult, CybercrimeReport } from "@/types";
 import { 
   prepareCybercrimeEvidence, 
   updateCybercrimeReportStatus, 

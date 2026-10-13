@@ -9,7 +9,6 @@ import {
   ShieldCheck, 
   Settings, 
   ChevronRight,
-  ShieldAlert,
   FileCheck
 } from "lucide-react";
 

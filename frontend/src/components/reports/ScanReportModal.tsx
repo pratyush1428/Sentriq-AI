@@ -12,7 +12,6 @@ import {
   PhoneCall, 
   CheckCircle2, 
   BrainCircuit,
-  Lock,
   Share2,
   Download,
   FileArchive
@@ -34,7 +33,6 @@ export function ScanReportModal({ scan, onClose }: ScanReportModalProps) {
   const isHigh = scan.risk_score >= 60;
   const isMed = scan.risk_score >= 30 && scan.risk_score < 60;
 
-  const scoreColor = isHigh ? "text-[#B91C1C]" : isMed ? "text-[#B45309]" : "text-[#15803D]";
   const badgeColor = isHigh ? "bg-[#FEE2E2] text-[#B91C1C]" : isMed ? "bg-[#FEF3C7] text-[#B45309]" : "bg-[#DCFCE7] text-[#15803D]";
 
   return (

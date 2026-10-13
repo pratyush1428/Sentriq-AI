@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { X, User, Globe, Shield, Trash2, CheckCircle2 } from "lucide-react";
 import { UserProfile } from "@/types";
 
@@ -15,14 +15,6 @@ export function SettingsModal({ user, onClose, onUpdateUser }: SettingsModalProp
   const [language, setLanguage] = useState(user?.preferred_language || "en");
   const [protectionActive, setProtectionActive] = useState(user?.protection_active ?? true);
   const [isSaved, setIsSaved] = useState(false);
-
-  useEffect(() => {
-    if (user) {
-      setDisplayName(user.display_name || "Arun S.");
-      setLanguage(user.preferred_language || "en");
-      setProtectionActive(user.protection_active ?? true);
-    }
-  }, [user]);
 
   const handleSave = () => {
     onUpdateUser({

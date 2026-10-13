@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { BookOpen, ShieldCheck, PhoneCall, AlertOctagon, CheckCircle2, Lock } from "lucide-react";
+import { ShieldCheck, CheckCircle2 } from "lucide-react";
 
 export function SafetyGuideView() {
   const guides = [

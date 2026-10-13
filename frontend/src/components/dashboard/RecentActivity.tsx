@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { ChevronRight, Clock, ShieldCheck, ArrowRight } from "lucide-react";
+import React, { useSyncExternalStore } from "react";
+import { ChevronRight, Clock, ArrowRight } from "lucide-react";
 import { ScanResult } from "@/types";
 
 interface RecentActivityProps {
@@ -10,10 +10,20 @@ interface RecentActivityProps {
   onViewAll: () => void;
 }
 
+const subscribeTime = (callback: () => void) => {
+  const timer = setInterval(callback, 30000);
+  return () => clearInterval(timer);
+};
+const getTimeSnapshot = () => Date.now();
+const getServerSnapshot = () => 0;
+
 export function RecentActivity({ scans, onSelectScan, onViewAll }: RecentActivityProps) {
+  const now = useSyncExternalStore(subscribeTime, getTimeSnapshot, getServerSnapshot);
+
   const formatTimeAgo = (dateStr: string) => {
+    if (!now) return "recently";
     try {
-      const diffMs = Date.now() - new Date(dateStr).getTime();
+      const diffMs = now - new Date(dateStr).getTime();
       const diffMins = Math.floor(diffMs / (1000 * 60));
       if (diffMins < 60) return `${Math.max(1, diffMins)} min ago`;
       const diffHours = Math.floor(diffMins / 60);
