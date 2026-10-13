@@ -6,14 +6,12 @@ import {
   Download, 
   ExternalLink, 
   Clock, 
-  ShieldAlert, 
   CheckCircle2, 
   Edit3, 
   Save, 
   FileArchive,
   PhoneCall,
-  Search,
-  Filter
+  Search
 } from "lucide-react";
 import { CybercrimeReport } from "@/types";
 import { 
@@ -23,31 +21,30 @@ import {
   getEvidencePackageDownloadUrl 
 } from "@/services/api";
 
-interface MyReportsViewProps {
-  onOpenReportModal?: (report: CybercrimeReport) => void;
-}
-
-export function MyReportsView({ onOpenReportModal }: MyReportsViewProps) {
+export function MyReportsView() {
   const [reports, setReports] = useState<CybercrimeReport[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [editingAckId, setEditingAckId] = useState<string | null>(null);
   const [ackValue, setAckValue] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const loadReports = async () => {
-    setIsLoading(true);
-    try {
-      const data = await fetchCybercrimeReports();
-      setReports(data);
-    } catch (e) {
-      console.error("Error loading reports:", e);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
-    loadReports();
+    let isMounted = true;
+    fetchCybercrimeReports()
+      .then((data) => {
+        if (isMounted) {
+          setReports(data);
+          setIsLoading(false);
+        }
+      })
+      .catch((err) => {
+        console.error("Error loading reports:", err);
+        if (isMounted) setIsLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleSaveAck = async (reportId: string) => {
